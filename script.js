@@ -4,7 +4,6 @@
 var hw8 = angular.module('hw8', ['ngCordova','angularMoment','ngAnimate']);
 
      hw8.controller('page',function($scope,$http,$cordovaGeolocation) {
-$scope.my = { myValue:true , myValuep:true , myValuee:true, myValuepl:true, myValueg:true, myValuef:true , show:true , showe:true, showp:true , showpl:true, showg:true,showf:true};
 
 // on page load 
 $(document).ready(function(){
@@ -32,9 +31,7 @@ function error(err) {
 };
 
 navigator.geolocation.getCurrentPosition(success, error, options);
-//angular.element(user_section).hide();
-
-
+angular.element(user_section).hide();
 
  
     
@@ -44,34 +41,10 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 
 //on click of search 
     $scope.getName=function(){
-		
         $scope.required=true;
-		
-		if((typeof($scope.keyword)=="undefined")||(($scope.keyword)==null))
-   {
-				$('#prog').hide();
-                     $scope.my.show=true;
-                    $scope.my.showp=true;
-                    
-                    
-                    $scope.my.showe=true;
-                    $scope.my.showpl=true;
-                    
-                    $scope.my.showg=true;
-                   
-
-                    $scope.my.showf=true;
-   }
-		
-		
-		else
-		
-		
-		
-{
-	 $('#prog').show();
+if(typeof($scope.keyword)!="undefined"){
        var $a = $('.nav-tabs .active').text(); 
-		
+
         $http.get("fb.php?keyword="+ $scope.keyword+"&type="+$a+"&lat="+$scope.lat+"&long="+$scope.long)
     .then(function successCallback(response) {
         
@@ -229,17 +202,18 @@ else
         console.log(response)
 
      
-        $scope.my.show=true;
-                    $scope.my.showp=true;
+        angular.element(user_section).hide();
+                    angular.element(pages_section).hide();
                     
                     
-                    $scope.my.showe=true;
-                    $scope.my.showpl=true;
+                    angular.element(events_section).hide();
+                   
+                    angular.element(places_section).hide();
                     
-                    $scope.my.showg=true;
+                    angular.element(groups_section).hide();
                    
 
-                    $scope.my.showf=true;
+                    angular.element(fav_section).hide();
                      
                     
                 
@@ -247,134 +221,176 @@ else
     });
 
 
-         $scope.funp("Pages");
-		$scope.fune("Events");
-		$scope.funpl("Places");
-		$scope.fune("Groups");		
+					angular.element(user_section).hide();
+                    angular.element(pages_section).hide();
+                    
+                    
+                    angular.element(events_section).hide();
+                   
+                    angular.element(places_section).hide();
+                    
+                    angular.element(groups_section).hide();
+                   
 
-   
-  
+                    angular.element(fav_section).hide();
+                     
+ $('#prog').show();
+   }
+   else
+   {
+                    angular.element(user_section).hide();
+                    angular.element(pages_section).hide();
+                    
+                    
+                    angular.element(events_section).hide();
+                   
+                    angular.element(places_section).hide();
+                    
+                    angular.element(groups_section).hide();
+                   
+
+                    angular.element(fav_section).hide();
+   }
 
 
     if($a=="Users"){
-
-     
-                     $scope.my.show=false;
-                     $scope.my.showp=true;
+     setTimeout(function () {
+                    angular.element(pages_section).hide();
                     
                     
-                    $scope.my.showe=true;
-                    $scope.my.showpl=true;
+                    angular.element(events_section).hide();
+                   
+                    angular.element(places_section).hide();
                     
-                    $scope.my.showg=true;
+                    angular.element(groups_section).hide();
                    
 
-                    $scope.my.showf=true;
+                    angular.element(fav_section).hide();
                     
+                    angular.element(user_section).show();
 
+                    angular.element(user_carousel).carousel(0);
+                }, 1000);
 
-            
  }
  if($a=="Pages")
- {
-                     
-                    $scope.my.showp=false;
+ {setTimeout(function () {
+                    angular.element(user_section).hide();
                     
-                    $scope.my.show=true;
-                    $scope.my.showe=true;
-                    $scope.my.showpl=true;
                     
-                    $scope.my.showg=true;
+                    angular.element(events_section).hide();
+                   
+                    angular.element(places_section).hide();
+                    
+                    angular.element(groups_section).hide();
                    
 
-                    $scope.my.showf=true;
-               
+                    angular.element(fav_section).hide();
+                    
+                    angular.element(pages_section).show();
+
+                    angular.element(pages_carousel).carousel(0);
+                }, 1000);
+
  }
  if($a=="Events")
  {
-    
+    setTimeout(function () {
+                    angular.element(user_section).hide();
+                    
+                    
+                    angular.element(pages_section).hide();
                    
+                    angular.element(places_section).hide();
                     
-                    
-                    $scope.my.showe=false;
-                      $scope.my.show=true;
-                    $scope.my.showp=true;
-                    $scope.my.showpl=true;
-                    
-                    $scope.my.showg=true;
+                    angular.element(groups_section).hide();
                    
 
-                    $scope.my.showf=true;
-               
+                    angular.element(fav_section).hide();
+                   
+                    angular.element(events_section).show();
+
+                    angular.element(events_carousel).carousel(0);
+                }, 1000);
 
  }
  if($a=="Places")
  {
-   
-                     
-                    $scope.my.showpl=false;
-                    $scope.my.show=true;
-                    $scope.my.showp=true;
+   setTimeout(function () {
+                    angular.element(user_section).hide();
                     
                     
-                    $scope.my.showe=true;
-                    $scope.my.showg=true;
+                    angular.element(events_section).hide();
+                   
+                    angular.element(pages_section).hide();
+                    
+                    angular.element(groups_section).hide();
                    
 
-                    $scope.my.showf=true;
-             
+                    angular.element(fav_section).hide();
+                    
+                    angular.element(places_section).show();
+
+                    angular.element(places_carousel).carousel(0);
+                }, 1000);
+
  }
  if($a=="Groups")
  {
-    
+    setTimeout(function () {
+                    angular.element(user_section).hide();
+                    
+                    
+                    angular.element(events_section).hide();
                    
+                    angular.element(places_section).hide();
                     
-                    $scope.my.showg=false;
+                    angular.element(pages_section).hide();
                    
-  $scope.my.show=true;
-                    $scope.my.showp=true;
+
+                    angular.element(fav_section).hide();
                     
-                    
-                    $scope.my.showe=true;
-                    $scope.my.showpl=true;
-                    $scope.my.showf=true;
-               
+                    angular.element(groups_section).show();
+
+                    angular.element(groups_carousel).carousel(0);
+                }, 1000);
 
  }
  if($a=="fav")
  {
-   
-                    $scope.my.showf=false;
-                     $scope.my.show=true;
-                    $scope.my.showp=true;
+   setTimeout(function () {
+                    angular.element(user_section).hide();
                     
                     
-                    $scope.my.showe=true;
-                    $scope.my.showpl=true;
+                    angular.element(events_section).hide();
+                   
+                    angular.element(places_section).hide();
                     
-                    $scope.my.showg=true;
+                    angular.element(groups_section).hide();
                    
 
-               
+                    angular.element(pages_section).hide();
+                   
+                    angular.element(fav_section).show();
+
+                    angular.element(fav_carousel).carousel(0);
+                }, 1000);
 
  }
 
     }
-    }
+    
     // on click of search ends 
 
     //on page tab click
     $scope.funp=function(value){
-
-         $scope.my.showp=false;
 $scope.required=true;
-
         if(typeof($scope.keyword)!="undefined"){
          
      $http.get("fb.php?keyword="+ $scope.keyword+"&type="+value)
         
     .then(function successCallback(response) {
-     //   $('#prog').hide();
+        $('#prog').hide();
 
         $scope.pages = response.data.data;
 
@@ -409,49 +425,39 @@ else
     });
 
   
-                     $scope.my.show=true;
+                    angular.element(user_section).hide();
                     
-                    $scope.my.myValue=true;
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=true;
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=true;
-                    
-                    $scope.my.showg=true;
-                    $scope.my.myValueg=true;
+                    angular.element(events_section).hide();
                    
+                    angular.element(places_section).hide();
+                     angular.element(pages_section).hide();
 
-                    $scope.my.showf=true;
-                    $scope.my.myValuef=true;
-                //    $('#prog').show();
+                    angular.element(groups_section).hide();
+                    angular.element(fav_section).hide();
+                    $('#prog').show();
 				
 		setTimeout(function () {
-                     
-                    $scope.my.showp=false;
-                    
-                    
+                    angular.element(pages_section).show();
+
+                    angular.element(pages_carousel).carousel(0);
 					}, 1000);
                 
 
     }
     else
     {
-		$('#prog').hide();
-                    $scope.my.show=true;
-                    $scope.my.myValue=true;
-                    $scope.my.showp=true;
-                    $scope.my.myValuep=true;
+         angular.element(groups_section).hide();
+                    angular.element(user_section).hide();
                     
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=true;
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=true;
                     
-                    $scope.my.showg=true;
-                   $scope.my.myValueg=true;
+                    angular.element(events_section).hide();
+                   
+                    angular.element(places_section).hide();
+                    
+                    angular.element(pages_section).hide();
+                   
 
-                    $scope.my.showf=true;
-                    $scope.my.myValueg=true;
+                    angular.element(fav_section).hide();
     }
 }
 
@@ -461,12 +467,11 @@ else
     //on user tab click
 
     $scope.funu=function(value){
-        $scope.my.show=false;
         if(typeof($scope.keyword)!="undefined"){
         $http.get("fb.php?keyword="+ $scope.keyword+"&type="+value)
     .then(function successCallback(response) {
             
-      //      $('#prog').hide();
+            $('#prog').hide();
 
         $scope.user = response.data.data;
 
@@ -500,52 +505,43 @@ else
     
        
     });
-               
-                $scope.my.showp=true;
-                    $scope.my.myValuep=true;
+
+    
+   
+                    angular.element(pages_section).hide();
                     
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=true;
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=true;
                     
-                    $scope.my.showg=true;
-                    $scope.my.myValueg=true;
+                    angular.element(events_section).hide();
                    
-                    $scope.my.myValuef=true;
-                    $scope.my.showf=true;
-				//	 $('#prog').show();
-				setTimeout(function () {  
-	 
-                   
-					 $scope.my.show=false;
-				},1000);
-              
-			  
+                    angular.element(places_section).hide();
                     
+                    angular.element(groups_section).hide();
                    
-			 
-			  
+                    angular.element(user_section).hide();
+                    angular.element(fav_section).hide();
+                    $('#prog').show();
+              setTimeout(function () {      
+                    angular.element(user_section).show();
+
+                    angular.element(user_carousel).carousel(0);
+			  },1000);
                 
 
     }
     else
     {
-          $scope.my.show=true;
-          $scope.my.myValue=true;
-                   $scope.my.showp=true;
-                    $scope.my.myValuep=true;
+         angular.element(groups_section).hide();
+                    angular.element(user_section).hide();
                     
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=true;
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=true;
                     
-                    $scope.my.showg=true;
-                    $scope.my.myValueg=true;
+                    angular.element(events_section).hide();
                    
-                    $scope.my.myValuef=true;
-                    $scope.my.showf=true;
+                    angular.element(places_section).hide();
+                    
+                    angular.element(pages_section).hide();
+                   
+
+                    angular.element(fav_section).hide();
     }
 }
 
@@ -553,11 +549,10 @@ else
         
     //on event tab click
     $scope.fune=function(value){
-         $scope.my.showe=false;
         if(typeof($scope.keyword)!="undefined"){
         $http.get("fb.php?keyword="+ $scope.keyword+"&type="+value)
     .then(function successCallback(response) {
-		//$('#prog').hide();
+$('#prog').hide();
 
         $scope.events = response.data.data;
         if(typeof(response.data.paging)!="undefined"){
@@ -590,59 +585,53 @@ else
     });
    
        
-                     $scope.my.showp=true;
-                    $scope.my.myValuep=true;
+                    angular.element(user_section).hide();
                     
-                    $scope.my.show=true;
-                    $scope.my.myValue=true;
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=true;
                     
-                    $scope.my.showg=true;
-                    $scope.my.myValueg=true;
+                    angular.element(pages_section).hide();
                    
-                    $scope.my.myValuef=true;
-                    $scope.my.showf=true;
-                   // $('#prog').show();
+                    angular.element(places_section).hide();
+                    
+                    angular.element(groups_section).hide();
+                   
+angular.element(events_section).hide(); 
+                    angular.element(fav_section).hide();
+                    $('#prog').show();
 					setTimeout(function () {
-                    
-                    $scope.my.showe=false;
-                    
+                    angular.element(events_section).show();
+
+                    angular.element(events_carousel).carousel(0);
 					},1000);
 
        
     }
     else
     {
-          $scope.my.show=true;
-           $scope.my.myValue=true;
-                   $scope.my.showp=true;
-                    $scope.my.myValuep=true;
+         angular.element(groups_section).hide();
+                    angular.element(user_section).hide();
                     
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=true;
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=true;
                     
-                    $scope.my.showg=true;
-                    $scope.my.myValueg=true;
+                    angular.element(events_section).hide();
                    
-                    $scope.my.myValuef=true;
-                    $scope.my.showf=true;
+                    angular.element(places_section).hide();
+                    
+                    angular.element(pages_section).hide();
+                   
+
+                    angular.element(fav_section).hide();
     }
 }
     // on event tab click ends
 
     //on place tab click
     $scope.funpl=function(value){
-         $scope.my.showpl=false;
         if(typeof($scope.keyword)!="undefined"){
         
         $http.get("fb.php?keyword="+ $scope.keyword+"&type="+value+"&lat="+$scope.lat+"&long="+$scope.long)
 
 
     .then(function successCallback(response) {
-//        $('#prog').hide();
+        $('#prog').hide();
 
         $scope.places = response.data.data;
         if(typeof(response.data.paging)!="undefined"){
@@ -677,45 +666,39 @@ else
     
 
        
-                    $scope.my.showp=true;
-                    $scope.my.myValuep=true;
+                    angular.element(user_section).hide();
                     
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=true;
-                    $scope.my.show=true;
-                    $scope.my.myValue=true;
                     
-                    $scope.my.showg=true;
-                    $scope.my.myValueg=true;
+                    angular.element(events_section).hide();
                    
-                    $scope.my.myValuef=true;
-                    $scope.my.showf=true;
-                 //   $('#prog').show();
+                    angular.element(pages_section).hide();
+                    
+                    angular.element(groups_section).hide();
+                   
+                    angular.element(places_section).hide();
+                    angular.element(fav_section).hide();
+                    $('#prog').show();
 					setTimeout(function () {
-                     
-                    $scope.my.showpl=false;
-                    
-                   
+                    angular.element(places_section).show();
+
+                    angular.element(places_carousel).carousel(0);
 					},1000);
               
             }
             else
             {
-                 $scope.my.showp=true;
-                    $scope.my.myValuep=true;
+                 angular.element(groups_section).hide();
+                    angular.element(user_section).hide();
                     
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=true;
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=true;
                     
-                    $scope.my.showg=true;
-                    $scope.my.myValueg=true;
+                    angular.element(events_section).hide();
                    
-                    $scope.my.myValuef=true;
-                    $scope.my.showf=true;
-                    $scope.my.show=true;
-                    $scope.my.myValue=true;
+                    angular.element(places_section).hide();
+                    
+                    angular.element(pages_section).hide();
+                   
+
+                    angular.element(fav_section).hide();
             }  
 
   
@@ -726,12 +709,10 @@ else
     //on group tab click
 
     $scope.fung=function(value){
-
-                    $scope.my.showg=false;
         if(typeof($scope.keyword)!="undefined"){
         $http.get("fb.php?keyword="+ $scope.keyword+"&type="+value)
     .then(function successCallback(response) {
-      //  $('#prog').hide();
+        $('#prog').hide();
 
         $scope.groups = response.data.data;
 if(typeof(response.data.paging)!="undefined"){
@@ -767,45 +748,40 @@ else
     
   
     
-                    $scope.my.showp=true;
-                    $scope.my.myValuep=true;
+                    angular.element(user_section).hide();
                     
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=true;
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=true;
                     
-                    $scope.my.show=true;
-                    $scope.my.myValue=true;
+                    angular.element(events_section).hide();
                    
-                    $scope.my.myValuef=true;
-                    $scope.my.showf=true;
-                  //  $('#prog').show();
+                    angular.element(places_section).hide();
+                    
+                    angular.element(pages_section).hide();
+                   
+
+                    angular.element(fav_section).hide();
+                    angular.element(groups_section).hide();
+                    $('#prog').show();
 					setTimeout(function () {
-                    
-                    
-                    $scope.my.showg=false;
-                   
+                    angular.element(groups_section).show();
+
+                    angular.element(groups_carousel).carousel(0);
 					},1000);
               
                 }
                 else
                 {
-                    $scope.my.showp=true;
-                    $scope.my.myValuep=true;
+                    angular.element(groups_section).hide();
+                    angular.element(user_section).hide();
                     
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=true;
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=true;
                     
-                    $scope.my.showg=true;
-                    $scope.my.myValueg=true;
+                    angular.element(events_section).hide();
                    
-                    $scope.my.myValuef=true;
-                    $scope.my.showf=true;
-                    $scope.my.show=true;
-                    $scope.my.myValue=true;
+                    angular.element(places_section).hide();
+                    
+                    angular.element(pages_section).hide();
+                   
+
+                    angular.element(fav_section).hide();
                 }       
    
     }
@@ -814,33 +790,29 @@ else
     $scope.fun=function(value){
 
        
- $scope.my.showf=false;
-                   
+
         $scope.u = [];
         if(localStorage.getItem("userfavorite")){
         $scope.u= JSON.parse(localStorage.getItem("userfavorite"));
         $scope.funuLength = $scope.u.length;
         }
        
-    
-                     $scope.my.showp=true;
-                    $scope.my.myValuep=true;
+    setTimeout(function () {
+                    angular.element(user_section).hide();
                     
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=true;
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=true;
                     
-                    $scope.my.showg=true;
-                    $scope.my.myValueg=true;
-                                     
-                    $scope.my.show=true;
-                    $scope.my.myValue=true;
+                    angular.element(events_section).hide();
                    
-setTimeout(function () {
-                    $scope.my.showf=false;
+                    angular.element(places_section).hide();
+                    
+                    angular.element(groups_section).hide();
                    
+
+                    angular.element(pages_section).hide();
                    
+                    angular.element(fav_section).show();
+
+                    angular.element(fav_carousel).carousel(0);
                 }, 1000);
 
        
@@ -849,27 +821,21 @@ setTimeout(function () {
     //on fav tab click ends
 
     $scope.clear=function(){
-        $scope.keyword=null;
+        $scope.keyword="";
         $scope.required=false;
        
-          $('#prog').hide();
-                      $scope.my.showp=true;
-                    $scope.my.myValuep=true;
+           setTimeout(function () {
+                    angular.element(user_section).hide();
                     
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=true;
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=true;
                     
-                    $scope.my.showg=true;
-                    $scope.my.myValueg=true;
+                    angular.element(events_section).hide();
                    
-                    $scope.my.myValuef=true;
-                    $scope.my.showf=true;
-                    $scope.my.show=true;
-                    $scope.my.myValue=true;
+                    angular.element(places_section).hide();
+                    
+                    angular.element(groups_section).hide();
                    
- 
+                     angular.element(pages_section).hide();
+                }, 100);
      
     }
 	
@@ -1005,43 +971,17 @@ setTimeout(function () {
 
 // user display section
 
-
   $scope.user_view_details=function(id){
 
- $scope.details_pic="";
-    $scope.details_name="";
-     $scope.postid="";
-     $scope.value="";
-    
-     $scope.length=true;
 
- $scope.user_details_album=[];
-      $scope.pages_details_album=[];
-       $scope.events_details_album=[];
-        $scope.groups_details_album=[];
-         $scope.places_details_album=[];
-          $scope.fav_details_album=[];
-               $scope.user_details_post=[];
-     $scope.pages_details_post=[];
-     $scope.events_details_post=[];
-     $scope.groups_details_post=[];
-     $scope.places_details_post=[];
-     $scope.fav_details_post=[];
-     $scope.plength=true;
-   
-   
- setTimeout(function () {
   $http.get("fb.php", {params:{"uid":id}})
     .then(function successCallback(response) {
-  
        
         $('#try').delay(2000).hide();
 
         $('#try1').delay(2000).hide();
 
         $('.panel').show();
-        
-    
         $scope.details_pic = "https://graph.facebook.com/v2.8/"+response.data.id+"/picture?access_token=EAAED0CT6escBAGjZCH9S4ZAvbvKGcBhPkVpZCy9ZB1TJxzkKCldIfTSRNprOVhfVOsym3j8gFMZBaKyijJBPlgOLuDZCulZCZCuFwMUjFUTFmPgvMkcrnsRC3qvZCNrhLt0mhQbpV0Uy13X2suswzKk1hexz0wa8acU4ZD";
             $scope.details_name = response.data.name;
             $scope.postid=response.data.id;
@@ -1066,23 +1006,23 @@ setTimeout(function () {
         {
             $scope.plength = response.data.hasOwnProperty('posts');
         }
-      
        }, function errorCallback(response) {
         console.log(response)
        
     });
- }, 1000);
 
-                    $scope.my.show=true;
-                    $scope.my.myValue=false;
+     
+                    
 
-                   
-                   $('.panel').hide();
-                  
-                  
+   
+                    angular.element(user_section).hide();
+                    angular.element(user_carousel).carousel(0);
+                    angular.element(user_section).show();
+
+                    angular.element(user_carousel).carousel("prev");
+                    $('.panel').hide();
                     $('#try').show();
                     $('#try1').show();
-                   
      
 
      
@@ -1091,38 +1031,18 @@ setTimeout(function () {
 // user display section ends and pages display section begins
 
   $scope.pages_view_details=function(id){
-   $scope.details_pic="";
-    $scope.details_name="";
-     $scope.postid="";
-     $scope.value="";
-     $scope.user_details_album=[];
-      $scope.pages_details_album=[];
-       $scope.events_details_album=[];
-        $scope.groups_details_album=[];
-         $scope.places_details_album=[];
-          $scope.fav_details_album=[];
-     $scope.length=true;
-     $scope.user_details_post=[];
-     $scope.pages_details_post=[];
-     $scope.events_details_post=[];
-     $scope.groups_details_post=[];
-     $scope.places_details_post=[];
-     $scope.fav_details_post=[];
-     $scope.plength=true;
-   
-   
- setTimeout(function () {
+    
 
      $http.get("fb.php", {params:{"uid":id}})
     .then(function successCallback(response) {
 
-       
+        
         $('#try2').delay(2000).hide();
 
         $('#try3').delay(2000).hide(); 
 		
 
-      $('.panels').show();
+        $('.panel').show();
 		
 		
 			
@@ -1157,18 +1077,16 @@ if(response.data.hasOwnProperty('posts'))
         
     });
 
-   },1000);
    
-                    $scope.my.showp=true;
-                    $scope.my.myValuep=false;
+   
+                    angular.element(pages_section).hide();
 
-                    $('.panels').hide();
-                     $('#try2').show();
-
-            $('#try3').show(); 
-
-
-                   
+                    angular.element(pages_carousel).carousel(0);
+                    angular.element(pages_section).show();
+                    angular.element(pages_section).carousel("prev");
+                    $('.panel').hide();
+                    $('#try2').show();
+                    $('#try3').show();
                   
              
 
@@ -1176,27 +1094,6 @@ if(response.data.hasOwnProperty('posts'))
  // pages display section ends and events display section begins
 
 $scope.events_view_details=function(id){
-    $scope.details_pic="";
-    $scope.details_name="";
-     $scope.postid="";
-     $scope.value="";
-     $scope.user_details_album=[];
-      $scope.pages_details_album=[];
-       $scope.events_details_album=[];
-        $scope.groups_details_album=[];
-         $scope.places_details_album=[];
-          $scope.fav_details_album=[];
-     $scope.length=true;
-     $scope.user_details_post=[];
-     $scope.pages_details_post=[];
-     $scope.events_details_post=[];
-     $scope.groups_details_post=[];
-     $scope.places_details_post=[];
-     $scope.fav_details_post=[];
-     $scope.plength=true;
-   
-   
- setTimeout(function () {
 
     $http.get("fb.php", {params:{"eid":id}})
     .then(function successCallback(response) {
@@ -1233,11 +1130,12 @@ $scope.details_pic = "https://graph.facebook.com/v2.8/"+response.data.id+"/pictu
         console.log(response)
         
     });
-},1000);
    
    
-                    $scope.my.showe=true;
-                    $scope.my.myValuee=false;
+                    angular.element(events_section).hide();
+                    angular.element(events_carousel).carousel(0);
+                    angular.element(events_section).show();
+                    angular.element(events_carousel).carousel("prev");
                 
             $('.panel').hide();
             $('#try4').show();
@@ -1251,26 +1149,6 @@ $scope.details_pic = "https://graph.facebook.com/v2.8/"+response.data.id+"/pictu
 // events display section ends and places display section begins
 
   $scope.places_view_details=function(id){
-    $scope.details_pic="";
-    $scope.details_name="";
-     $scope.postid="";
-     $scope.value="";
-     $scope.user_details_album=[];
-      $scope.pages_details_album=[];
-       $scope.events_details_album=[];
-        $scope.groups_details_album=[];
-         $scope.places_details_album=[];
-          $scope.fav_details_album=[];
-     $scope.length=true;
-     $scope.user_details_post=[];
-     $scope.pages_details_post=[];
-     $scope.events_details_post=[];
-     $scope.groups_details_post=[];
-     $scope.places_details_post=[];
-     $scope.fav_details_post=[];
-     $scope.plength=true;
-
- setTimeout(function () {
    $http.get("fb.php", {params:{"uid":id}})
     .then(function successCallback(response) {
 
@@ -1307,10 +1185,11 @@ $scope.details_pic = "https://graph.facebook.com/v2.8/"+response.data.id+"/pictu
         console.log(response)
         
     });
-},1000);
    
-                    $scope.my.showpl=true;
-                    $scope.my.myValuepl=false;
+                    angular.element(places_section).hide();
+                    angular.element(places_carousel).carousel(0);
+                    angular.element(places_section).show();
+                    angular.element(places_carousel).carousel("prev");
               $('.panel').hide();
               $('#try6').show();
               $('#try7').show();
@@ -1319,27 +1198,6 @@ $scope.details_pic = "https://graph.facebook.com/v2.8/"+response.data.id+"/pictu
   // places display section ends and groups display section begins
 
 $scope.groups_view_details=function(id){
-    $scope.details_pic="";
-    $scope.details_name="";
-     $scope.postid="";
-     $scope.value="";
-     $scope.user_details_album=[];
-      $scope.pages_details_album=[];
-       $scope.events_details_album=[];
-        $scope.groups_details_album=[];
-         $scope.places_details_album=[];
-          $scope.fav_details_album=[];
-     $scope.length=true;
-     $scope.user_details_post=[];
-     $scope.pages_details_post=[];
-     $scope.events_details_post=[];
-     $scope.groups_details_post=[];
-     $scope.places_details_post=[];
-     $scope.fav_details_post=[];
-     $scope.plength=true;
-   
-   
- setTimeout(function () {
    $http.get("fb.php", {params:{"uid":id}})
     .then(function successCallback(response) {
 
@@ -1373,12 +1231,13 @@ $scope.groups_view_details=function(id){
         console.log(response)
         
     });
-},1000);
 
    
 
-                    $scope.my.showg=true;
-                    $scope.my.myValueg=false;
+                    angular.element(groups_section).hide();
+                    angular.element(groups_carousel).carousel(0);
+                    angular.element(groups_section).show();
+                    angular.element(groups_carousel).carousel("prev");
                     $('.panel').hide();
                     $('#try8').show();
                     $('#try9').show();
@@ -1415,28 +1274,55 @@ $scope.groups_view_details=function(id){
   $scope.users_carousel_back=function()
   {
 
-    $scope.my.show=false;
-    $scope.my.myValue=true;
+    if($('.nav-tabs .active').text() == "Favorites"){
+    angular.element(fav_carousel).carousel("next");
+    }
+    else
+    {
+        angular.element(user_carousel).carousel("next");
+    }
   }
   $scope.pages_carousel_back=function()
   {
-    $scope.my.showp=false;
-    $scope.my.myValuep=true;
+    if($('.nav-tabs .active').text() == "Favorites"){
+        angular.element(pages_section).hide();  
+    angular.element(fav_section).show();    
+    angular.element(fav_carousel).carousel("next");
+    }
+    else
+    {
+    angular.element(pages_carousel).carousel("next");
+    }
   }
   $scope.events_carousel_back=function()
   {
-    $scope.my.showe=false;
-    $scope.my.myValuee=true;
+    if($('.nav-tabs .active').text() == "Favorites"){
+    angular.element(fav_carousel).carousel("next");
+    }
+    else
+    {
+    angular.element(events_carousel).carousel("next");
+    }
   }
   $scope.places_carousel_back=function()
   {
-    $scope.my.showpl=false;
-    $scope.my.myValuepl=true;
+    if($('.nav-tabs .active').text() == "Favorites"){
+    angular.element(fav_carousel).carousel("next");
+    }
+    else
+    {
+    angular.element(places_carousel).carousel("next");
+    }
   }
   $scope.groups_carousel_back=function()
   {
-    $scope.my.showg=false;
-    $scope.my.myValueg=true;
+    if($('.nav-tabs .active').text() == "Favorites"){
+    angular.element(fav_carousel).carousel("next");
+    }
+    else
+    {
+    angular.element(groups_carousel).carousel("next");
+    }
   }
   $scope.fav_carousel_back=function()
   {
@@ -1445,8 +1331,7 @@ $scope.groups_view_details=function(id){
         $scope.u= JSON.parse(localStorage.getItem("userfavorite"));
         $scope.funuLength = $scope.u.length;
         }
-    $scope.my.showf=false;
-    $scope.my.myValuef=true;
+    angular.element(fav_carousel).carousel("next");
     
   }
   // back button click end
@@ -1767,25 +1652,16 @@ $scope.getGroup= function(id)
 // view detials in fav
 
 $scope.fav_view_details = function(type,favid){
-    $scope.details_pic="";
-    $scope.details_name="";
-     $scope.postid="";
-     $scope.value="";
-     $scope.user_details_album=[];
-      $scope.pages_details_album=[];
-       $scope.events_details_album=[];
-        $scope.groups_details_album=[];
-         $scope.places_details_album=[];
-          $scope.fav_details_album=[];
-     $scope.length=true;
-     $scope.user_details_post=[];
-     $scope.pages_details_post=[];
-     $scope.events_details_post=[];
-     $scope.groups_details_post=[];
-     $scope.places_details_post=[];
-     $scope.fav_details_post=[];
-     $scope.plength=true;
-setTimeout(function () {
+    $scope.details_pic = "";
+     $scope.details_name = "";
+      $scope.value="";
+       $scope.postid="";
+       $scope.fav_details_album="";
+       $scope.length ="";
+       $scope.plength = "";
+       $scope.fav_details_post="";
+	   $scope.fav_type = type;
+
 if(type != 'Events'){
          $http.get("fb.php", {params:{"uid":favid}})
     .then(function successCallback(response) {
@@ -1859,10 +1735,10 @@ if(type == 'Events'){
        
     });
 }
-
-},1000);
-    $scope.my.showf=true;
-    $scope.my.myValuef=false;
+                    angular.element(fav_section).hide();
+                    angular.element(fav_carousel).carousel(0);
+                    angular.element(fav_section).show();
+                    angular.element(fav_carousel).carousel("prev");
 
         $('.panel').hide();
      $('#try10').show();

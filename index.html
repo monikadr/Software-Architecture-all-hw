@@ -81,10 +81,12 @@
             </div>
             </div>
 
-                <div id="user_section" class="animate-hide" ng-hide="my.show">
-                   
-                                <div class="tab-content tab_container" >
-                                    <div id="user" class="tab-pane in active">
+                <div id="user_section" class="user_section">
+                    <div id="user_carousel" class="carousel slide" data-interval="false">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="tab-content tab_container" style="background: white;">
+                                    <div id="user" class="tab-pane fade in active">
                                         <div class="table_and_header_wrapper">
                           
                                             <div class="table-responsive" >
@@ -99,17 +101,17 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody >
-                                                        <tr ng-repeat="x in user "  >
+                                                        <tr ng-repeat="x in user | filter:keyword "  >
 
                                                             <td >{{$index+1}}</td>
-                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:35px;height:35px" class="img-circle"></td>
+                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:30px;height:30px" class="img-circle"></td>
                                                             <td >{{x.name}}</td>
                                                             <td ><button id="star_1" ng-if="user_fav_star" ng-click="user_fav(x.id)">
                                             <span ng-style="{'display' : ((isFavorited('Users', x.id)) ? 'none' : 'block')}" style="color:black;line-height:33px;">☆</span>
                                             <span ng-style="{'display' : ((isFavorited('Users', x.id)) ? 'block' : 'none')}" style="color:rgb(216, 216, 56);line-height:33px;">★</span>
                                         </button>
                                         </td>
-                                                            <td style="max-width: 120px;"><button class="btn btn-default"  ng-click="user_view_details(x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" > </button></td>
+                                                            <td style="max-width: 120px;"> <button class="btn btn-default" ng-click="user_view_details(x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" ></span> </button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -125,7 +127,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="details" class='animate-hide' ng-hide="my.myValue" >
+                            <div class="item">
                                 <div class="container-fluid" style="margin-top: 15px;background: white;padding-bottom: 15px;">
                                     <div class="row view_details_header">
                                      <button id="back" class="btn btn-default btn-sm" ng-click="users_carousel_back()"><span class="glyphicon glyphicon-chevron-left view_details_back_button" >Back</span></button>
@@ -232,15 +234,19 @@
                                                             </tbody>
                                                         </table>                                                    
                                                 </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    
+                    </div>
               
-               <div id="pages_section" class='animate-hide' ng-hide="my.showp">
-                                    
-                               <div id="pages" class="tab-pane">
+               <div id="pages_section" class="pages_section">
+                    <div id="pages_carousel" class="carousel slide" data-interval="false">
+                        <div class="carousel-inner">
+                            <div class="item active">                   
+                               <div id="pages" class="tab-pane fade">
                                         <div class="table_and_header_wrapper">
                                             <div class="table-responsive" >
                                                 <table id="main_table"  class="table table-responsive">
@@ -254,16 +260,16 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr ng-repeat="x in pages">
+                                                        <tr ng-repeat="x in pages| filter:keyword  ">
                                                          <td >{{$index+1}}</td>
-                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:35px;height:35px" class="img-circle"></td>
+                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:30px;height:30px" class="img-circle"></td>
                                                             <td >{{x.name}}</td>
                                                             <td ><button id="star_1" ng-if="page_fav_star" ng-click="page_fav(x.id)">
                                             <span ng-style="{'display' : ((isFavorited('Pages', x.id)) ? 'none' : 'block')}" style="color:black;line-height:33px;">☆</span>
                                             <span ng-style="{'display' : ((isFavorited('Pages', x.id)) ? 'block' : 'none')}" style="color:rgb(216, 216, 56);line-height:33px;">★</span>
                                         </button>
                                         </td>
-                                                            <td style="max-width: 120px;"><button class="btn btn-default" ng-click="pages_view_details(x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" > </button></td>
+                                                            <td style="max-width: 120px;"><button class="btn btn-default" ng-click="pages_view_details(x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" ></span>  </button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -279,7 +285,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div id="two" class='animate-hide' ng-hide="my.myValuep" >
+                                <div class="item">
                                     <div class="container-fluid" style="margin-top: 15px;background: white;padding-bottom: 15px;">
                                     <div class="row view_details_header">
                                      
@@ -386,16 +392,20 @@
                                                             </tr>
                                                             </tbody>
                                                         </table>                                                    
-                                                
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
               
-                    <div id="events"  class='animate-hide' ng-hide="my.showe">
-                       
-                                   <div id="events" class="tab-pane">
+                    <div id="events_section" class="events_section">
+                        <div id="events_carousel" class="carousel slide" data-interval="false">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                   <div id="events" class="tab-pane fade">
                                         <div class="table_and_header_wrapper">
                                             
                                             <div class="table-responsive">
@@ -410,16 +420,16 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr ng-repeat="x in events  ">
+                                                        <tr ng-repeat="x in events |  filter:keyword ">
                                                           <td >{{$index+1}}</td>
-                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:35px;height:35px" class="img-circle"></td>
+                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:30px;height:30px" class="img-circle"></td>
                                                             <td >{{x.name}}</td>
                                                             <td ><button id="star_1" ng-if="event_fav_star" ng-click="event_fav(x.id)">
                                             <span ng-style="{'display' : ((isFavorited('Events', x.id)) ? 'none' : 'block')}" style="color:black;line-height:33px;">☆</span>
                                             <span ng-style="{'display' : ((isFavorited('Events', x.id)) ? 'block' : 'none')}" style="color:rgb(216, 216, 56);line-height:33px;">★</span>
                                         </button>
                                         </td>
-                                                            <td style="max-width: 120px;"><button class="btn btn-default" ng-click="events_view_details(x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" > </button></td>
+                                                            <td style="max-width: 120px;"><button class="btn btn-default" ng-click="events_view_details(x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" ></span>  </button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -436,7 +446,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="three" class='animate-hide' ng-hide="my.myValuee" >
+                                <div class="item">
                                     <div class="container-fluid" style="margin-top: 15px;background: white;padding-bottom: 15px;">
                                     <div class="row view_details_header">
                                      <button id="back" class="btn btn-default btn-sm" ng-click="events_carousel_back()"><span class="glyphicon glyphicon-chevron-left view_details_back_button" >Back</span></button>
@@ -532,17 +542,21 @@
                                                             </tr>
                                                             </tbody>
                                                         </table>                                                    
-                                                
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div id="place" class='animate-hide' ng-hide="my.showpl">
-                        
+                    <div id="places_section" class="places_section">
+                         <div id="places_carousel" class="carousel slide" data-interval="false">
+                            <div class="carousel-inner">
+                                <div class="item active">
 
-                                    <div id="places" class="tab-pane">
+                                    <div id="places" class="tab-pane fade">
                                         <div class="table_and_header_wrapper">
                                            
                                             <div class="table-responsive">
@@ -557,16 +571,16 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr ng-repeat="x in places " >
+                                                        <tr ng-repeat="x in places | filter:keyword " >
                                                           <td >{{$index+1}}</td>
-                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:35px;height:35px" class="img-circle"></td>
+                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:30px;height:30px" class="img-circle"></td>
                                                             <td >{{x.name}}</td>
                                                             <td ><button id="star_1" ng-if="place_fav_star" ng-click="place_fav(x.id)">
                                             <span ng-style="{'display' : ((isFavorited('Places', x.id)) ? 'none' : 'block')}" style="color:black;line-height:33px;">☆</span>
                                             <span ng-style="{'display' : ((isFavorited('Places', x.id)) ? 'block' : 'none')}" style="color:rgb(216, 216, 56);line-height:33px;">★</span>
                                         </button>
                                         </td>
-                                                            <td style="max-width: 120px;"><button class="btn btn-default" ng-click="places_view_details(x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" ></button></td>
+                                                            <td style="max-width: 120px;"><button class="btn btn-default" ng-click="places_view_details(x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" ></span>  </button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -582,7 +596,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="four" class='animate-hide' ng-hide="my.myValuepl" >
+                                <div class="item">
                                     <div class="container-fluid" style="margin-top: 15px;background: white;padding-bottom: 15px;">
                                     <div class="row view_details_header">
                                      <button id="back" class="btn btn-default btn-sm" ng-click="places_carousel_back()"><span class="glyphicon glyphicon-chevron-left view_details_back_button" >Back</span></button>
@@ -680,16 +694,20 @@
                                                             </tr>
                                                             </tbody>
                                                         </table>                                                    
-                                               
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div id="groups" class='animate-hide' ng-hide="my.showg">
-                       
-                                    <div id="groups" class="tab-pane">
+                    <div id="groups_section" class="groups_section">
+                        <div id="groups_carousel" class="carousel slide" data-interval="false">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <div id="groups" class="tab-pane fade">
                                         <div class="table_and_header_wrapper">
                                            
                                             <div class="table-responsive" >
@@ -704,16 +722,16 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr ng-repeat="x in groups ">
+                                                        <tr ng-repeat="x in groups |  filter:keyword ">
                                                            <td >{{$index+1}}</td>
-                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:35px;height:35px" class="img-circle"></td>
+                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:30px;height:30px" class="img-circle"></td>
                                                             <td >{{x.name}}</td>
                                                             <td ><button id="star_1" ng-if="group_fav_star" ng-click="group_fav(x.id)">
                                             <span ng-style="{'display' : ((isFavorited('Groups', x.id)) ? 'none' : 'block')}" style="color:black;line-height:33px;">☆</span>
                                             <span ng-style="{'display' : ((isFavorited('Groups', x.id)) ? 'block' : 'none')}" style="color:rgb(216, 216, 56);line-height:33px;">★</span>
                                         </button>
                                         </td>
-                                                            <td style="max-width: 120px;"><button class="btn btn-default" ng-click="groups_view_details(x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" ></button></td>
+                                                            <td style="max-width: 120px;"><button class="btn btn-default" ng-click="groups_view_details(x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" ></span>  </button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -729,7 +747,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div id="five" class='animate-hide' ng-hide="my.myValueg" >
+                                <div class="item">
                                     <div class="container-fluid" style="margin-top: 15px;background: white;padding-bottom: 15px;">
                                     <div class="row view_details_header">
                                      <button id="back" class="btn btn-default btn-sm" ng-click="groups_carousel_back()"><span class="glyphicon glyphicon-chevron-left view_details_back_button" >Back</span></button>
@@ -834,15 +852,19 @@
                                                             </tr>
                                                             </tbody>
                                                         </table>                                                    
-                                               
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     
-                    <div id="fav" class='animate-hide' ng-hide="my.showf">
-                       
-                                     <div id="fav" class="tab-pane">
+                    <div id="fav_section" class="fav_section">
+                        <div id="fav_carousel" class="carousel slide" data-interval="false">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                     <div id="fav" class="tab-pane fade">
                                         <div class="table_and_header_wrapper">
                                            
                                             <div class="table-responsive" >
@@ -860,14 +882,14 @@
                                                     <tbody>
                                                     <tr ng-repeat="x in u" >
                                                            <td  >{{$index+1}}</td>
-                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:35px;height:35px" class="img-circle"></td>
+                                                            <td ><img ng-src="{{x.picture.data.url}}" style="width:30px;height:30px" class="img-circle"></td>
                                                             <td >{{x.name}}</td>
                                                             
                                                         
                                                             <td>{{x.type}}</td>
                                                             <td><button id="delete" class="glyphicon glyphicon-trash favorite_trash_button" ng-click="removeFromFavorites('empty',x.id)"></button></td>
                                                             
-                                                            <td style="max-width: 120px;"><button class="btn btn-default" ng-click="fav_view_details(x.type,x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" > </button></td>
+                                                            <td style="max-width: 120px;"><button class="btn btn-default" ng-click="fav_view_details(x.type,x.id)"> <span class="glyphicon glyphicon-chevron-right view_details_back_button" ></span>  </button></td>
                                                         </tr>
                                                        
                                                     </tbody>
@@ -877,7 +899,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="six" class='animate-hide' ng-hide="my.myValuef" >
+                                <div class="item">
                                     <div class="container-fluid" style="margin-top: 15px;background: white;padding-bottom: 15px;">
                                     <div class="row view_details_header">
                                         <button id="back" class="btn btn-default btn-sm" ng-click="fav_carousel_back()"><span class="glyphicon glyphicon-chevron-left view_details_back_button" >Back</span></button>
@@ -981,7 +1003,9 @@
                                                             </tr>
                                                             </tbody>
                                                         </table>                                                    
-                                               
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
